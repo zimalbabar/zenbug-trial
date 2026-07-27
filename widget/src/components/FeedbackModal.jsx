@@ -38,21 +38,27 @@ const FeedbackModal = ({ onClose }) => {
     if (modal) modal.style.display = "flex";
   };
 
-  const handleSubmit = async () => {
-    const payload = {
-      ...form,
-      imageUrl: screenshot,
-      metadata: collectMetadata(),
-    };
-    try {
-      await axios.post("http://localhost:5055/api/feedback", payload);
-      alert("Feedback submitted!");
-      onClose();
-    } catch (err) {
-      alert("Submission failed.");
-    }
+ const handleSubmit = async () => {
+  const payload = {
+    ...form,
+    imageUrl: screenshot,
+    metadata: collectMetadata(),
   };
 
+  try {
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/feedback`,
+      payload
+    );
+
+    alert("Feedback submitted!");
+    onClose();
+
+  } catch (err) {
+    console.error(err);
+    alert("Submission failed.");
+  }
+};
   return (
     <div className="zenbug-modal-overlay" onClick={onClose}>
       <div className="zenbug-modal" onClick={(e) => e.stopPropagation()}>
