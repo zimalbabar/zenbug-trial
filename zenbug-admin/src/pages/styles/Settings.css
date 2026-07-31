@@ -1,0 +1,100 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #0f172a;
+}
+
+.settings-container {
+ 
+    min-height: 100vh;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  padding: 2rem;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #93c5fd;
+  border: 1px solid #2563eb;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.settings-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+}
+
+.settings-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.settings-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #60a5fa;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.5rem;
+}
+
+.settings-card p {
+  margin: 0.4rem 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.settings-card p strong {
+  color: #f1f5f9;
+}
+
+.settings-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #e2e8f0;
+}
+
+.settings-card input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+/* Optional: buttons if you add any later (e.g. Save button) */
+.settings-container button:not(.back-button) {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.settings-container button:not(.back-button):hover {
+  background-color: #1d4ed8;
+}

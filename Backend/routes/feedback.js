@@ -1,16 +1,46 @@
 const express = require("express");
 const router = express.Router();
 const Feedback = require("../models/feedback");
-
+const analyzeBug = require("../services/aiService");
 // POST feedback
 router.post("/", async (req, res) => {
   try {
-    const newFeedback = new Feedback(req.body);
+
+    const aiResult = await analyzeBug(
+      req.body.title,
+      req.body.description,
+      req.body.metadata
+    );
+    console.log("AI Result:", aiResult);
+
+    const newFeedback = new Feedback({
+
+      ...req.body,
+
+      aiCategory: aiResult.aiCategory,
+      aiPriority: aiResult.aiPriority,
+      aiSuggestion: aiResult.aiSuggestion,
+      possibleCause: aiResult.possibleCause,
+      confidence: aiResult.confidence
+
+    });
+
     await newFeedback.save();
-    res.status(201).json({ message: "Feedback submitted!" });
+    console.log(newFeedback);
+
+    res.status(201).json({
+      message: "Feedback submitted!",
+      feedback: newFeedback
+    });
+
   } catch (err) {
+
     console.error(err);
-    res.status(500).json({ error: "Failed to save feedback" });
+
+    res.status(500).json({
+      error: "Failed to save feedback"
+    });
+
   }
 });
 
@@ -48,7 +78,4 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-
-
-
 module.exports = router;

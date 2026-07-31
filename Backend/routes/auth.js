@@ -4,14 +4,10 @@ const bcrypt = require("bcryptjs");
 
 const router = express.Router();
 const SECRET = process.env.JWT_SECRET || 'secret123';
-
-// Hardcoded admin credentials
 const admin = {
   role: 'admin',
-  password: bcrypt.hashSync('zenbug', 8) // hashed password
+  password: bcrypt.hashSync('zenbug', 8) 
 };
-
-// POST /api/login
 router.post("/login", (req, res) => {
   const { role, password } = req.body;
 
@@ -26,5 +22,5 @@ router.post("/login", (req, res) => {
   const token = jwt.sign({ role }, SECRET, { expiresIn: "1h" });
   res.json({ token });
 });
-
+ 
 module.exports = router;
